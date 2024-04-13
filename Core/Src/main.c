@@ -24,6 +24,9 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
+#include "ring-buffer.h"
+#include "ucli.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -89,12 +92,21 @@ int main(void)
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
 
+  uint8_t serial_rx_buffer;
+  RingBuffer(uint8_t, 10) ring_buffer = ring_buffer_new(uint8_t, 10, NULL, NULL);
+
+  ucli_init(&ring_buffer);
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+    HAL_UART_Receive(&huart2, &serial_rx_buffer, 1, 500);
+    ring_buffer_push_back(&ring_buffer, &serial_rx_buffer);
+
+    ucli_routine();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

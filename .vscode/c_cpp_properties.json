@@ -1,0 +1,31 @@
+{
+  "configurations": [
+    {
+      "name": "STM32",
+      "includePath": [
+        "Core/Inc",
+        "Core/Lib/micro-libs/Unity/src",
+        "Core/Lib/micro-libs/blinky/inc",
+        "Core/Lib/micro-libs/bms-monitor/inc",
+        "Core/Lib/micro-libs/error-utils",
+        "Core/Lib/micro-libs/generic-queue",
+        "Core/Lib/micro-libs/invlib",
+        "Core/Lib/micro-libs/logger",
+        "Core/Lib/micro-libs/mcp23017/inc",
+        "Core/Lib/micro-libs/pid",
+        "Core/Lib/micro-libs/ring-buffer/inc",
+        "Core/Lib/micro-libs/ucli/inc",
+        "Drivers/CMSIS/Device/ST/STM32F4xx/Include",
+        "Drivers/CMSIS/Include",
+        "Drivers/STM32F4xx_HAL_Driver/Inc",
+        "Drivers/STM32F4xx_HAL_Driver/Inc/Legacy"
+      ],
+      "defines": [
+        "STM32F446xx",
+        "USE_HAL_DRIVER"
+      ],
+      "compilerPath": "/home/kalsifer/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-none-eabi-gcc/12.3.1-1.2.1/.content/bin/arm-none-eabi-gcc"
+    }
+  ],
+  "version": 4
+}
