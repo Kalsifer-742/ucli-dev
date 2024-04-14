@@ -94,6 +94,8 @@ int main(void)
 
   uint8_t serial_rx_buffer;
 
+  ucli_init(void);
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
