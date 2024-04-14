@@ -93,9 +93,6 @@ int main(void)
   /* USER CODE BEGIN 2 */
 
   uint8_t serial_rx_buffer;
-  RingBuffer(uint8_t, 10) ring_buffer = ring_buffer_new(uint8_t, 10, NULL, NULL);
-
-  ucli_init(&ring_buffer);
 
   /* USER CODE END 2 */
 
@@ -104,9 +101,8 @@ int main(void)
   while (1)
   {
     HAL_UART_Receive(&huart2, &serial_rx_buffer, 1, 500);
-    ring_buffer_push_back(&ring_buffer, &serial_rx_buffer);
 
-    ucli_routine();
+    ucli_routine(&serial_rx_buffer);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
