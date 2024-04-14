@@ -36,26 +36,9 @@ BUILD_DIR = build
 ######################################
 # C sources
 C_SOURCES =  \
-Core/Lib/micro-libs/Unity/src/unity.c \
-Core/Lib/micro-libs/blinky/src/blinky.c \
-Core/Lib/micro-libs/blinky/test/test-blinky.c \
-Core/Lib/micro-libs/bms-monitor/src/bms-monitor.c \
-Core/Lib/micro-libs/bms-monitor/src/ltc6811.c \
-Core/Lib/micro-libs/bms-monitor/test/test-bms-monitor.c \
-Core/Lib/micro-libs/bms-monitor/test/test-ltc6811.c \
-Core/Lib/micro-libs/error-utils/error_utils.c \
-Core/Lib/micro-libs/generic-queue/generic_queue.c \
-Core/Lib/micro-libs/generic-queue/test/test.c \
-Core/Lib/micro-libs/invlib/invlib.c \
-Core/Lib/micro-libs/logger/logger.c \
-Core/Lib/micro-libs/mcp23017/src/mcp23017.c \
-Core/Lib/micro-libs/mcp23017/test/test-mcp23017.c \
-Core/Lib/micro-libs/pid/pid.c \
 Core/Lib/micro-libs/ring-buffer/src/ring-buffer.c \
-Core/Lib/micro-libs/ring-buffer/test/test-ring-buffer.c \
 Core/Lib/micro-libs/ucli/src/ucli.c \
 Core/Lib/micro-libs/ucli/src/ucli_fsm.c \
-Core/Lib/micro-libs/ucli/test/test-ucli.c \
 Core/Src/gpio.c \
 Core/Src/main.c \
 Core/Src/stm32f4xx_hal_msp.c \
@@ -150,16 +133,33 @@ AS_INCLUDES = \
 # C includes
 C_INCLUDES =  \
 -ICore/Inc \
+-ICore/Lib/micro-libs/Unity/extras/bdd/src \
+-ICore/Lib/micro-libs/Unity/extras/fixture/src \
+-ICore/Lib/micro-libs/Unity/extras/memory/src \
+-ICore/Lib/micro-libs/Unity/extras/memory/test \
 -ICore/Lib/micro-libs/Unity/src \
+-ICore/Lib/micro-libs/Unity/test/expectdata \
+-ICore/Lib/micro-libs/Unity/test/testdata \
+-ICore/Lib/micro-libs/Unity/test/tests \
 -ICore/Lib/micro-libs/blinky/inc \
 -ICore/Lib/micro-libs/bms-monitor/inc \
+-ICore/Lib/micro-libs/can-manager/inc \
+-ICore/Lib/micro-libs/circ-buf \
+-ICore/Lib/micro-libs/circ-buf/test \
+-ICore/Lib/micro-libs/eeprom-config \
 -ICore/Lib/micro-libs/error-utils \
 -ICore/Lib/micro-libs/generic-queue \
 -ICore/Lib/micro-libs/invlib \
 -ICore/Lib/micro-libs/logger \
+-ICore/Lib/micro-libs/m95256 \
 -ICore/Lib/micro-libs/mcp23017/inc \
+-ICore/Lib/micro-libs/min-heap/inc \
 -ICore/Lib/micro-libs/pid \
+-ICore/Lib/micro-libs/priority-queue \
+-ICore/Lib/micro-libs/priority-queue/test \
+-ICore/Lib/micro-libs/pwm \
 -ICore/Lib/micro-libs/ring-buffer/inc \
+-ICore/Lib/micro-libs/timer-utils \
 -ICore/Lib/micro-libs/ucli/inc \
 -IDrivers/CMSIS/Device/ST/STM32F4xx/Include \
 -IDrivers/CMSIS/Include \
