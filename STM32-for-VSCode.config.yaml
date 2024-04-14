@@ -66,16 +66,17 @@ excludes:
   - "**/Example/**"
   - "**/example/**"
   - "**_template.*"
-  - Core/Lib/micro-libs/Unity/extras/**
-  - Core/Lib/micro-libs/Unity/test/**
   - Core/Lib/micro-libs/circ-buf/**
   - Core/Lib/micro-libs/can-manager/**
+  - Core/Lib/micro-libs/CMock/**
+  - Core/Lib/micro-libs/eeprom-config/**
+  - Core/Lib/micro-libs/m95256/**
   - Core/Lib/micro-libs/min-heap/**
   - Core/Lib/micro-libs/priority-queue/**
-  - Core/Lib/micro-libs/m95256/**
-  - Core/Lib/micro-libs/eeprom-config/**
   - Core/Lib/micro-libs/pwm/**
   - Core/Lib/micro-libs/timer-utils/**
+  - Core/Lib/micro-libs/Unity/extras/**
+  - Core/Lib/micro-libs/Unity/test/**
 
 
 # Include directories (directories containing .h or .hpp files)
@@ -87,7 +88,6 @@ includeDirectories:
   - Src/**
   - Core/Src/**
   - Core/Lib/**
-  - Core/Lib/micro-libs/ucli/inc
 
 
 # Files that should be included in the compilation.
@@ -99,8 +99,9 @@ sourceFiles:
   - Src/**
   - Core/Src/**
   - Core/Lib/**
-  - Core/Lib/micro-libs/Unity/src/*.c
-  - Core/Lib/micro-libs/ucli/src/*.c
+  # - Core/Lib/micro-libs/Unity/src/*.c
+  # - Core/Lib/micro-libs/ucli/src/*.c
+  # - Core/Lib/micro-libs/ring-buffer/src/*.c
 
 # When no makefile is present it will show a warning pop-up.
 # However when compilation without the CubeMX Makefile is desired, this can be turned of.

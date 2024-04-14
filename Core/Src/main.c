@@ -24,7 +24,6 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
-#include "ring-buffer.h"
 #include "ucli.h"
 
 /* USER CODE END Includes */
@@ -94,7 +93,7 @@ int main(void)
 
   uint8_t serial_rx_buffer;
 
-  ucli_init(void);
+  ucli_init();
 
   /* USER CODE END 2 */
 

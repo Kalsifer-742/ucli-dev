@@ -53,8 +53,8 @@ Core/Lib/micro-libs/mcp23017/test/test-mcp23017.c \
 Core/Lib/micro-libs/pid/pid.c \
 Core/Lib/micro-libs/ring-buffer/src/ring-buffer.c \
 Core/Lib/micro-libs/ring-buffer/test/test-ring-buffer.c \
-Core/Lib/micro-libs/ucli/src/ucli-fsm.c \
 Core/Lib/micro-libs/ucli/src/ucli.c \
+Core/Lib/micro-libs/ucli/src/ucli_fsm.c \
 Core/Lib/micro-libs/ucli/test/test-ucli.c \
 Core/Src/gpio.c \
 Core/Src/main.c \
