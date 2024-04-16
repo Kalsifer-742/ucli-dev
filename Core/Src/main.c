@@ -103,7 +103,8 @@ int main(void)
   {
     HAL_UART_Receive(&huart2, &serial_rx_buffer, 1, 500);
 
-    ucli_routine(&serial_rx_buffer);
+    ucli_routine(serial_rx_buffer);
+    serial_rx_buffer = 0;
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
