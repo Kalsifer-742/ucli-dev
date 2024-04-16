@@ -91,9 +91,9 @@ int main(void)
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
 
-  uint8_t serial_rx_buffer;
+  uint8_t serial_rx_buffer = 0;
 
-  ucli_init();
+  ucli_init(&huart2);
 
   /* USER CODE END 2 */
 
