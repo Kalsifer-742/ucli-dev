@@ -23,9 +23,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
 #include "ucli.h"
-
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -35,7 +33,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
+#define SERIAL_TIMEOUT 500
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -46,13 +44,20 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-
+uint8_t serial_rx_buffer = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{
+    ucli_receive_data(serial_rx_buffer);
+}
 
+void serial_tx(char* message, size_t size) {
+    HAL_UART_Transmit(&huart2, (uint8_t*)message, size, SERIAL_TIMEOUT);
+}
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -66,6 +71,7 @@ void SystemClock_Config(void);
   */
 int main(void)
 {
+
   /* USER CODE BEGIN 1 */
 
   /* USER CODE END 1 */
@@ -76,7 +82,12 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
+    ucli_handler_t ucli_handler = {
+        .send = &serial_tx,
+        .echo = true,
+    };
 
+    ucli_init(ucli_handler);
   /* USER CODE END Init */
 
   /* Configure the system clock */
@@ -90,25 +101,15 @@ int main(void)
   MX_GPIO_Init();
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
-
-  uint8_t serial_rx_buffer = 0;
-
-  ucli_init(&huart2);
-
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    HAL_UART_Receive(&huart2, &serial_rx_buffer, 1, 500);
+    HAL_UART_Receive_IT(&huart2, &serial_rx_buffer, 1);
 
-    //ring buffer extern to the cli
-
-    //1 char at a time
-
-    ucli_routine(serial_rx_buffer);
-    serial_rx_buffer = 0;
+    ucli_routine();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
