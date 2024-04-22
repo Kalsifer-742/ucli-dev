@@ -103,6 +103,10 @@ int main(void)
   {
     HAL_UART_Receive(&huart2, &serial_rx_buffer, 1, 500);
 
+    //ring buffer extern to the cli
+
+    //1 char at a time
+
     ucli_routine(serial_rx_buffer);
     serial_rx_buffer = 0;
     /* USER CODE END WHILE */
