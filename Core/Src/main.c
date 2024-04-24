@@ -45,6 +45,7 @@
 
 /* USER CODE BEGIN PV */
 uint8_t serial_rx_buffer = 0;
+uint32_t primask = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -57,6 +58,16 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 
 void serial_tx(char* message, size_t size) {
     HAL_UART_Transmit(&huart2, (uint8_t*)message, size, SERIAL_TIMEOUT);
+}
+
+void cs_enter(void) {
+    primask = __get_PRIMASK();
+    __disable_irq();
+}
+
+void cs_exit(void) {
+    if (!primask)
+        __enable_irq();
 }
 /* USER CODE END PFP */
 
@@ -84,6 +95,8 @@ int main(void)
   /* USER CODE BEGIN Init */
     ucli_handler_t ucli_handler = {
         .send = &serial_tx,
+        .cs_enter = &cs_enter,
+        .cs_exit = &cs_exit,
         .echo = true,
     };
 
