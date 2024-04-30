@@ -53,7 +53,8 @@ void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
-    ucli_receive_data(serial_rx_buffer);
+    //ucli_receive_data(*(char*)&serial_rx_buffer);
+    ucli_receive_data((char)serial_rx_buffer);
 }
 
 void serial_tx(char* message, size_t size) {
