@@ -37,8 +37,9 @@ BUILD_DIR = build
 # C sources
 C_SOURCES =  \
 Core/Lib/micro-libs/ring-buffer/src/ring-buffer.c \
+Core/Lib/micro-libs/ucli/src/ucli-fsm.c \
+Core/Lib/micro-libs/ucli/src/ucli-parser.c \
 Core/Lib/micro-libs/ucli/src/ucli.c \
-Core/Lib/micro-libs/ucli/src/ucli_fsm.c \
 Core/Src/gpio.c \
 Core/Src/main.c \
 Core/Src/stm32f4xx_hal_msp.c \
@@ -133,27 +134,6 @@ AS_INCLUDES = \
 # C includes
 C_INCLUDES =  \
 -ICore/Inc \
--ICore/Lib/micro-libs/CMock/src \
--ICore/Lib/micro-libs/CMock/test/iar/iar_v4/incIAR \
--ICore/Lib/micro-libs/CMock/test/iar/iar_v5/incIAR \
--ICore/Lib/micro-libs/CMock/test/system/test_compilation \
--ICore/Lib/micro-libs/CMock/vendor/c_exception/lib \
--ICore/Lib/micro-libs/CMock/vendor/c_exception/test/support \
--ICore/Lib/micro-libs/CMock/vendor/unity/extras/fixture/src \
--ICore/Lib/micro-libs/CMock/vendor/unity/extras/memory/src \
--ICore/Lib/micro-libs/CMock/vendor/unity/extras/memory/test \
--ICore/Lib/micro-libs/CMock/vendor/unity/src \
--ICore/Lib/micro-libs/CMock/vendor/unity/test/expectdata \
--ICore/Lib/micro-libs/CMock/vendor/unity/test/testdata \
--ICore/Lib/micro-libs/CMock/vendor/unity/test/tests \
--ICore/Lib/micro-libs/Unity/extras/bdd/src \
--ICore/Lib/micro-libs/Unity/extras/fixture/src \
--ICore/Lib/micro-libs/Unity/extras/memory/src \
--ICore/Lib/micro-libs/Unity/extras/memory/test \
--ICore/Lib/micro-libs/Unity/src \
--ICore/Lib/micro-libs/Unity/test/expectdata \
--ICore/Lib/micro-libs/Unity/test/testdata \
--ICore/Lib/micro-libs/Unity/test/tests \
 -ICore/Lib/micro-libs/blinky/inc \
 -ICore/Lib/micro-libs/bms-monitor/inc \
 -ICore/Lib/micro-libs/can-manager/inc \
