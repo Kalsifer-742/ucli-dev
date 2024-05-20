@@ -24,6 +24,8 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "ucli.h"
+#include <stdio.h>
+#include <string.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -69,13 +71,18 @@ void cs_exit(void) {
         __enable_irq();
 }
 
-void echo(char** args) {
-    const char fmt[] = "%s\r\n";
-    int size = snprintf(NULL, 0, fmt, args[0]);
-    char message[size + 1]; // +1 for terminating null byte
-    snprintf(message, sizeof message, fmt, args[0]);
+void echo(int argc, char args[][10]) {
+    if (argc > 1) {
+        char* error_message = "\r\necho expects 1 argument\r\n";
+        serial_tx(error_message, strlen(error_message));
+    } else {
+        char* fmt = "\n\r%s\n\r";
+        int size = snprintf(NULL, 0, fmt, args[0]);
+        char message[size + 1]; // +1 for terminating null byte
+        snprintf(message, sizeof message, fmt, args[0]);
 
-    serial_tx(message, size);
+        serial_tx(message, size);
+    }
 }
 /* USER CODE END PFP */
 

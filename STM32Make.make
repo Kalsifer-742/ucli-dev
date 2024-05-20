@@ -37,6 +37,7 @@ BUILD_DIR = build
 # C sources
 C_SOURCES =  \
 Core/Lib/micro-libs/ring-buffer/src/ring-buffer.c \
+Core/Lib/micro-libs/ucli/src/ucli-dictionary.c \
 Core/Lib/micro-libs/ucli/src/ucli-fsm.c \
 Core/Lib/micro-libs/ucli/src/ucli-parser.c \
 Core/Lib/micro-libs/ucli/src/ucli.c \
