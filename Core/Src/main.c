@@ -55,6 +55,7 @@ void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef* huart) {
     ucli_receive_data((char)serial_rx_buffer);
+    HAL_UART_Receive_IT(&huart2, &serial_rx_buffer, 1);
 }
 
 void serial_tx(char* message, size_t size) {
@@ -111,8 +112,8 @@ int main(void) {
     /* USER CODE BEGIN Init */
     ucli_handler_t ucli_handler = {
         .send = &serial_tx,
-        .cs_enter = &cs_enter,
-        .cs_exit = &cs_exit,
+        .cs_enter = NULL,
+        .cs_exit = NULL,
         .echo = true,
     };
 
@@ -134,13 +135,14 @@ int main(void) {
     MX_GPIO_Init();
     MX_USART2_UART_Init();
     /* USER CODE BEGIN 2 */
+
+    HAL_UART_Receive_IT(&huart2, &serial_rx_buffer, 1);
+
     /* USER CODE END 2 */
 
     /* Infinite loop */
     /* USER CODE BEGIN WHILE */
     while (1) {
-        HAL_UART_Receive_IT(&huart2, &serial_rx_buffer, 1);
-
         ucli_routine();
         /* USER CODE END WHILE */
 

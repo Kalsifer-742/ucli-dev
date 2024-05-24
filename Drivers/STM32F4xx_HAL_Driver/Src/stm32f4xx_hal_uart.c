@@ -1372,7 +1372,7 @@ HAL_StatusTypeDef HAL_UART_Receive_IT(UART_HandleTypeDef *huart, uint8_t *pData,
   *         of u16 provided through pData.
   * @param  huart  Pointer to a UART_HandleTypeDef structure that contains
   *                the configuration information for the specified UART module.
-  * @param  pData Pointer to data buffer (u8 or u16 data elements).
+  * @param  pData Pointer to data `ffer (u8 or u16 data elements).
   * @param  Size  Amount of data elements (u8 or u16) to be sent
   * @retval HAL status
   */
