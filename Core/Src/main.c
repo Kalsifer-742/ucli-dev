@@ -35,7 +35,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define SERIAL_TIMEOUT 500
+#define SERIAL_TIMEOUT 100
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -53,15 +53,6 @@ uint32_t primask = 0;
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef* huart) {
-    ucli_receive_data((char)serial_rx_buffer);
-    HAL_UART_Receive_IT(&huart2, &serial_rx_buffer, 1);
-}
-
-void serial_tx(char* message, size_t size) {
-    HAL_UART_Transmit(&huart2, (uint8_t*)message, size, SERIAL_TIMEOUT);
-}
-
 void cs_enter(void) {
     primask = __get_PRIMASK();
     __disable_irq();
@@ -72,9 +63,13 @@ void cs_exit(void) {
         __enable_irq();
 }
 
-void echo(int argc, char args[][10]) {
+void serial_tx(char* message, size_t size) {
+    HAL_UART_Transmit(&huart2, (uint8_t*)message, size, SERIAL_TIMEOUT);
+}
+
+void print(int argc, char args[][10]) {
     if (argc > 1) {
-        char* error_message = "\r\necho expects 1 argument\r\n";
+        char* error_message = "\r\nprint expects 1 argument\r\n";
         serial_tx(error_message, strlen(error_message));
     } else {
         char* fmt = "\n\r%s\n\r";
@@ -84,6 +79,11 @@ void echo(int argc, char args[][10]) {
 
         serial_tx(message, size);
     }
+}
+
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef* huart) {
+    ucli_receive_data((char)serial_rx_buffer);
+    HAL_UART_Receive_IT(&huart2, &serial_rx_buffer, 1);
 }
 /* USER CODE END PFP */
 
@@ -118,9 +118,7 @@ int main(void) {
     };
 
     ucli_init(ucli_handler);
-
-    ucli_command_t echo_command = {.name = "echo", .function = &echo};
-
+    ucli_command_t echo_command = {.name = "print", .function = &print};
     ucli_add_command(echo_command);
     /* USER CODE END Init */
 
@@ -143,7 +141,9 @@ int main(void) {
     /* Infinite loop */
     /* USER CODE BEGIN WHILE */
     while (1) {
+        cs_enter();
         ucli_routine();
+        cs_exit();
         /* USER CODE END WHILE */
 
         /* USER CODE BEGIN 3 */
