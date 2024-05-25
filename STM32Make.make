@@ -36,6 +36,7 @@ BUILD_DIR = build
 ######################################
 # C sources
 C_SOURCES =  \
+Core/Lib/micro-libs/Unity/src/unity.c \
 Core/Lib/micro-libs/ring-buffer/src/ring-buffer.c \
 Core/Lib/micro-libs/ucli/src/ucli-dictionary.c \
 Core/Lib/micro-libs/ucli/src/ucli-fsm.c \
@@ -135,6 +136,14 @@ AS_INCLUDES = \
 # C includes
 C_INCLUDES =  \
 -ICore/Inc \
+-ICore/Lib/micro-libs/Unity/extras/bdd/src \
+-ICore/Lib/micro-libs/Unity/extras/fixture/src \
+-ICore/Lib/micro-libs/Unity/extras/memory/src \
+-ICore/Lib/micro-libs/Unity/extras/memory/test \
+-ICore/Lib/micro-libs/Unity/src \
+-ICore/Lib/micro-libs/Unity/test/expectdata \
+-ICore/Lib/micro-libs/Unity/test/testdata \
+-ICore/Lib/micro-libs/Unity/test/tests \
 -ICore/Lib/micro-libs/blinky/inc \
 -ICore/Lib/micro-libs/bms-monitor/inc \
 -ICore/Lib/micro-libs/can-manager/inc \
