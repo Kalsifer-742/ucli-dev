@@ -63,6 +63,8 @@ void cs_exit(void) {
         __enable_irq();
 }
 
+void serial_rx(void) { HAL_UART_Receive_IT(&huart2, &serial_rx_buffer, 1); }
+
 void serial_tx(char* message, size_t size) {
     while (!(huart2.gState == HAL_UART_STATE_READY))
         ;
@@ -114,6 +116,7 @@ int main(void) {
 
     /* USER CODE BEGIN Init */
     ucli_handler_t ucli_handler = {
+        .enable_receive = &serial_rx,
         .send = &serial_tx,
         .cs_enter = &cs_enter,
         .cs_exit = &cs_exit,
@@ -141,16 +144,14 @@ int main(void) {
     MX_USART2_UART_Init();
     /* USER CODE BEGIN 2 */
 
-    HAL_UART_Receive_IT(&huart2, &serial_rx_buffer, 1);
+    serial_rx();
 
     /* USER CODE END 2 */
 
     /* Infinite loop */
     /* USER CODE BEGIN WHILE */
     while (1) {
-        if (ucli_routine() == UCLI_RETURN_CODE_OK) {
-            HAL_UART_Receive_IT(&huart2, &serial_rx_buffer, 1);
-        }
+        ucli_routine();
         /* USER CODE END WHILE */
 
         /* USER CODE BEGIN 3 */
