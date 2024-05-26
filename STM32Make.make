@@ -82,7 +82,7 @@ PREFIX = arm-none-eabi-
 POSTFIX = "
 # The gcc compiler bin path can be either defined in make command via GCC_PATH variable (> make GCC_PATH=xxx)
 # either it can be added to the PATH environment variable.
-GCC_PATH="/home/kalsifer/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-none-eabi-gcc/12.3.1-1.2.1/.content/bin
+GCC_PATH="/home/kalsifer/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-none-eabi-gcc/13.2.1-1.1.1/.content/bin
 ifdef GCC_PATH
 CXX = $(GCC_PATH)/$(PREFIX)g++$(POSTFIX)
 CC = $(GCC_PATH)/$(PREFIX)gcc$(POSTFIX)
@@ -136,6 +136,19 @@ AS_INCLUDES = \
 # C includes
 C_INCLUDES =  \
 -ICore/Inc \
+-ICore/Lib/micro-libs/CMock/src \
+-ICore/Lib/micro-libs/CMock/test/iar/iar_v4/incIAR \
+-ICore/Lib/micro-libs/CMock/test/iar/iar_v5/incIAR \
+-ICore/Lib/micro-libs/CMock/test/system/test_compilation \
+-ICore/Lib/micro-libs/CMock/vendor/c_exception/lib \
+-ICore/Lib/micro-libs/CMock/vendor/c_exception/test/support \
+-ICore/Lib/micro-libs/CMock/vendor/unity/extras/fixture/src \
+-ICore/Lib/micro-libs/CMock/vendor/unity/extras/memory/src \
+-ICore/Lib/micro-libs/CMock/vendor/unity/extras/memory/test \
+-ICore/Lib/micro-libs/CMock/vendor/unity/src \
+-ICore/Lib/micro-libs/CMock/vendor/unity/test/expectdata \
+-ICore/Lib/micro-libs/CMock/vendor/unity/test/testdata \
+-ICore/Lib/micro-libs/CMock/vendor/unity/test/tests \
 -ICore/Lib/micro-libs/Unity/extras/bdd/src \
 -ICore/Lib/micro-libs/Unity/extras/fixture/src \
 -ICore/Lib/micro-libs/Unity/extras/memory/src \
@@ -260,13 +273,13 @@ $(BUILD_DIR):
 # flash
 #######################################
 flash: $(BUILD_DIR)/$(TARGET).elf
-	"/home/kalsifer/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/openocd/0.12.0-2.1/.content/bin/openocd" -f ./openocd.cfg -c "program $(BUILD_DIR)/$(TARGET).elf verify reset exit"
+	"/usr/bin/openocd" -f ./openocd.cfg -c "program $(BUILD_DIR)/$(TARGET).elf verify reset exit"
 
 #######################################
 # erase
 #######################################
 erase: $(BUILD_DIR)/$(TARGET).elf
-	"/home/kalsifer/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/openocd/0.12.0-2.1/.content/bin/openocd" -f ./openocd.cfg -c "init; reset halt; stm32f4x mass_erase 0; exit"
+	"/usr/bin/openocd" -f ./openocd.cfg -c "init; reset halt; stm32f4x mass_erase 0; exit"
 
 #######################################
 # clean up

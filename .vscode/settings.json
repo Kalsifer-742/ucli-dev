@@ -1,15 +1,16 @@
 {
-    "cortex-debug.armToolchainPath": "/home/kalsifer/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-none-eabi-gcc/12.3.1-1.2.1/.content/bin",
-    "cortex-debug.openocdPath": "/home/kalsifer/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/openocd/0.12.0-2.1/.content/bin/openocd",
+    "cortex-debug.armToolchainPath": "/home/kalsifer/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-none-eabi-gcc/13.2.1-1.1.1/.content/bin",
+    "cortex-debug.openocdPath": "/usr/bin/openocd",
     "files.associations": {
         "stm32f4xx_hal.h": "c",
         "ucli-parser.h": "c",
         "ucli.h": "c",
         "ucli-dictionary.h": "c",
         "ring-buffer.h": "c",
-        "ucli-fsm.h": "c"
+        "ucli-fsm.h": "c",
+        "ucli-private.h": "c"
     },
-    "stm32-for-vscode.openOCDPath": "/home/kalsifer/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/openocd/0.12.0-2.1/.content/bin/openocd",
+    "stm32-for-vscode.openOCDPath": "/usr/bin/openocd",
     "stm32-for-vscode.makePath": "/usr/bin/make",
-    "stm32-for-vscode.armToolchainPath": "/home/kalsifer/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-none-eabi-gcc/12.3.1-1.2.1/.content/bin"
+    "stm32-for-vscode.armToolchainPath": "/home/kalsifer/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-none-eabi-gcc/13.2.1-1.1.1/.content/bin"
 }

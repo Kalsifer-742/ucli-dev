@@ -64,7 +64,15 @@ void cs_exit(void) {
 }
 
 void serial_tx(char* message, size_t size) {
+    while (!(huart2.gState == HAL_UART_STATE_READY))
+        ;
     HAL_UART_Transmit(&huart2, (uint8_t*)message, size, SERIAL_TIMEOUT);
+}
+
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef* huart) {
+    if (ucli_receive_data((char)serial_rx_buffer) != UCLI_RETURN_CODE_OK) {
+        return;
+    }
 }
 
 void print(int argc, char args[][10]) {
@@ -79,11 +87,6 @@ void print(int argc, char args[][10]) {
 
         serial_tx(message, size);
     }
-}
-
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef* huart) {
-    ucli_receive_data((char)serial_rx_buffer);
-    HAL_UART_Receive_IT(&huart2, &serial_rx_buffer, 1);
 }
 /* USER CODE END PFP */
 
@@ -112,14 +115,18 @@ int main(void) {
     /* USER CODE BEGIN Init */
     ucli_handler_t ucli_handler = {
         .send = &serial_tx,
-        .cs_enter = NULL,
-        .cs_exit = NULL,
+        .cs_enter = &cs_enter,
+        .cs_exit = &cs_exit,
         .echo = true,
     };
 
-    ucli_init(ucli_handler);
-    ucli_command_t echo_command = {.name = "print", .function = &print};
-    ucli_add_command(echo_command);
+    if (ucli_init(ucli_handler) != UCLI_RETURN_CODE_OK) {
+        return 1;
+    }
+    ucli_command_t print_command = {.name = "print", .function = &print};
+    if (ucli_add_command(print_command) != UCLI_RETURN_CODE_OK) {
+        return 1;
+    }
     /* USER CODE END Init */
 
     /* Configure the system clock */
@@ -141,9 +148,9 @@ int main(void) {
     /* Infinite loop */
     /* USER CODE BEGIN WHILE */
     while (1) {
-        cs_enter();
-        ucli_routine();
-        cs_exit();
+        if (ucli_routine() == UCLI_RETURN_CODE_OK) {
+            HAL_UART_Receive_IT(&huart2, &serial_rx_buffer, 1);
+        }
         /* USER CODE END WHILE */
 
         /* USER CODE BEGIN 3 */

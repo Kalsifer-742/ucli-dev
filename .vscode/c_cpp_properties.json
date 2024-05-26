@@ -4,6 +4,19 @@
       "name": "STM32",
       "includePath": [
         "Core/Inc",
+        "Core/Lib/micro-libs/CMock/src",
+        "Core/Lib/micro-libs/CMock/test/iar/iar_v4/incIAR",
+        "Core/Lib/micro-libs/CMock/test/iar/iar_v5/incIAR",
+        "Core/Lib/micro-libs/CMock/test/system/test_compilation",
+        "Core/Lib/micro-libs/CMock/vendor/c_exception/lib",
+        "Core/Lib/micro-libs/CMock/vendor/c_exception/test/support",
+        "Core/Lib/micro-libs/CMock/vendor/unity/extras/fixture/src",
+        "Core/Lib/micro-libs/CMock/vendor/unity/extras/memory/src",
+        "Core/Lib/micro-libs/CMock/vendor/unity/extras/memory/test",
+        "Core/Lib/micro-libs/CMock/vendor/unity/src",
+        "Core/Lib/micro-libs/CMock/vendor/unity/test/expectdata",
+        "Core/Lib/micro-libs/CMock/vendor/unity/test/testdata",
+        "Core/Lib/micro-libs/CMock/vendor/unity/test/tests",
         "Core/Lib/micro-libs/Unity/extras/bdd/src",
         "Core/Lib/micro-libs/Unity/extras/fixture/src",
         "Core/Lib/micro-libs/Unity/extras/memory/src",
@@ -38,7 +51,7 @@
         "STM32F446xx",
         "USE_HAL_DRIVER"
       ],
-      "compilerPath": "/home/kalsifer/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-none-eabi-gcc/12.3.1-1.2.1/.content/bin/arm-none-eabi-gcc"
+      "compilerPath": "/home/kalsifer/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-none-eabi-gcc/13.2.1-1.1.1/.content/bin/arm-none-eabi-gcc"
     }
   ],
   "version": 4
