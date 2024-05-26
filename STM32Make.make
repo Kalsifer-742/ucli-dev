@@ -160,6 +160,7 @@ C_INCLUDES =  \
 -ICore/Lib/micro-libs/blinky/inc \
 -ICore/Lib/micro-libs/bms-monitor/inc \
 -ICore/Lib/micro-libs/can-manager/inc \
+-ICore/Lib/micro-libs/cli-legacy \
 -ICore/Lib/micro-libs/eeprom-config \
 -ICore/Lib/micro-libs/generic-queue \
 -ICore/Lib/micro-libs/invlib \

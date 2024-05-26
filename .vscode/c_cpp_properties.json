@@ -28,6 +28,7 @@
         "Core/Lib/micro-libs/blinky/inc",
         "Core/Lib/micro-libs/bms-monitor/inc",
         "Core/Lib/micro-libs/can-manager/inc",
+        "Core/Lib/micro-libs/cli-legacy",
         "Core/Lib/micro-libs/eeprom-config",
         "Core/Lib/micro-libs/generic-queue",
         "Core/Lib/micro-libs/invlib",
